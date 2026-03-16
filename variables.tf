@@ -61,10 +61,10 @@ variable "image" {
 variable "google_compute_disk" {
   description = "Configuration for additional disk (optional)"
   type = object({
-    name   = string
-    labels = map(string)
-    size   = optional(number)
-    type   = optional(string)
+    name   = optional(string)
+    labels = optional(map(string), {})
+    size   = optional(number, 10)
+    type   = optional(string, "pd-standard")
     zone   = optional(string)
   })
   default = null
