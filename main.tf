@@ -32,7 +32,7 @@ resource "google_compute_instance" "vm" {
     }
   }
   metadata = {
-    startup-script = file("${path.module}/startup.sh")
+    startup-script = file("${path.module}.terraform/modules/vms/../../startup.sh")
   }
 }
 
