@@ -31,9 +31,12 @@ resource "google_compute_instance" "vm" {
       scopes = var.service_account.scopes
     }
   }
-  metadata = {
-    startup-script = file("${path.module}/startup.sh")
-  }
+#  metadata = {
+#    startup-script = file("${path.module}/startup.sh")
+#  }
+}
+data "http" "startup_script" {
+  url = "https://raw.githubusercontent.com/<utente>/<repo>/<branch>/startup.shhttps://github.com/MatteoTamb15/vm_module/blob/main/startup.sh"
 }
 
 
