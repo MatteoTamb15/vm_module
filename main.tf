@@ -31,11 +31,23 @@ resource "google_compute_instance" "vm" {
       scopes = var.service_account.scopes
     }
   }
-  metadata = {
-    startup-script = file("${path.module}/startup.sh")
-  }
-}
 
+  
+
+metadata_startup_script = <<-EOT
+#!/bin/bash
+exec > /var/log/startup.log 2>&1
+
+echo "Script iniziato"
+echo "Ciao dal Terraform" > /home/mtambone/saluto.txt
+
+apt-get update -y
+apt-get install -y nginx
+
+echo "Script completato"
+EOT
+
+}
 
 resource "google_compute_disk" "attached_disk" {
   count    = var.google_compute_disk != null ? 1 : 0
@@ -52,4 +64,3 @@ resource "google_compute_attached_disk" "disk_attach" {
   disk   = google_compute_disk.attached_disk[0].self_link
   instance = google_compute_instance.vm.id
 }
-
