@@ -33,8 +33,8 @@ resource "google_compute_instance" "vm" {
   }
 
   
-metadata_startup_script = <<-EOT
 
+metadata_startup_script = <<-EOT
 #!/bin/bash
 exec > /var/log/startup.log 2>&1
 
@@ -44,8 +44,7 @@ echo "Ciao dal Terraform" > /home/user/saluto.txt
 apt-get update -y
 apt-get install -y nginx
 
-echo "Script completato
-
+echo "Script completato"
 EOT
 
 }
