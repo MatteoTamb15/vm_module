@@ -35,8 +35,12 @@ resource "google_compute_instance" "vm" {
 #    startup-script = file("${path.module}/startup.sh")
 #  }
 }
-data "http" "startup_script" {
-  url = "https://raw.githubusercontent.com/<utente>/<repo>/<branch>/startup.shhttps://github.com/MatteoTamb15/vm_module/blob/main/startup.sh"
+metadata_startup_script = <<-EOT
+    #!/bin/bash
+    echo "Ciao dal Terraform" > /home/user/saluto.txt
+    apt-get update
+    apt-get install -y nginx
+  EOT
 }
 
 
