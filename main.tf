@@ -39,7 +39,7 @@ metadata_startup_script = <<-EOT
 exec > /var/log/startup.log 2>&1
 
 echo "Script iniziato"
-echo "Ciao dal Terraform" > /home/user/saluto.txt
+echo "Ciao dal Terraform" > /home/mtambone/saluto.txt
 
 apt-get update -y
 apt-get install -y nginx
