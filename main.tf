@@ -32,14 +32,22 @@ resource "google_compute_instance" "vm" {
     }
   }
 
-  metadata = {
-    startup-script = <<-EOT
-    #!/bin/bash
-    echo "Ciao dal Terraform" > /home/user/saluto.txt
-    apt-get update
-    apt-get install -y nginx
-  EOT
-  }
+  
+metadata_startup_script = <<-EOT
+
+#!/bin/bash
+exec > /var/log/startup.log 2>&1
+
+echo "Script iniziato"
+echo "Ciao dal Terraform" > /home/user/saluto.txt
+
+apt-get update -y
+apt-get install -y nginx
+
+echo "Script completato
+
+EOT
+
 }
 
 resource "google_compute_disk" "attached_disk" {
