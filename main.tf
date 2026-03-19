@@ -68,6 +68,9 @@ sed -i 's/PermitRootLogin yes/PermitRootLogin prohibit-password/' /etc/ssh/sshd_
 sed -i 's/#PasswordAuthentication yes/PasswordAuthentication yes/' /etc/ssh/sshd_config || true
 sed -i 's/PasswordAuthentication no/PasswordAuthentication yes/' /etc/ssh/sshd_config || true
 systemctl restart sshd
+sudo apt install -y nginx
+sudo systemctl start nginx
+sudo systemctl enable nginx
 
 # Log
 echo "$(date): User '$USER_NAME' e gruppo '$GROUP_NAME'" >> /var/log/startup-script.log
